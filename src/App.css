@@ -1,0 +1,52 @@
+.card {
+  padding: var(--size-lg);
+  background-color: var(--component-background-secondary);
+  margin: auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-md);
+  text-align: center;
+}
+
+.swatches {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--size-md);
+
+  & > div {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-pill);
+
+    &.red {
+      background-color: var(--red-9);
+    }
+    &.orange {
+      background-color: var(--orange-9);
+    }
+    &.yellow {
+      background-color: var(--yellow-9);
+    }
+    &.green {
+      background-color: var(--green-9);
+    }
+    &.blue {
+      background-color: var(--blue-9);
+    }
+
+    &.purple {
+      background-color: var(--purple-9);
+    }
+    &.pink {
+      background-color: var(--pink-9);
+    }
+    &.gray {
+      background-color: var(--gray-9);
+    }
+    &.slate {
+      background-color: var(--slate-9);
+    }
+  }
+}
