@@ -68,3 +68,10 @@ button:focus-visible {
   border-color: var(--component-focus-border);
   box-shadow: var(--focus);
 }
+
+.global-css-class {
+  border: 1px dashed var(--component-border);
+  border-radius: var(--border-2);
+  margin-top: var(--size-md);
+  background: var(--slate-3);
+}
