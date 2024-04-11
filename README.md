@@ -9,7 +9,8 @@ Includes:
 - Vite
 - CSS Modules
 - [clsx](https://github.com/lukeed/clsx)
-- Light & Dark CSS variables ([Radix](https://www.radix-ui.com/colors/docs/palette-composition/scales))
+- [Design Tokens](https://github.com/andreortiz82/ao-design-tokens)
+- [React UI Lib](https://github.com/andreortiz82/ao-ui-lib)
 
 ## Get Started
 
