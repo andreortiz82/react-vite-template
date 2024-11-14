@@ -6,10 +6,12 @@ This template provides a minimal setup to get React working in Vite and some ESL
 
 Includes:
 
-- React / Typescript
+- React Typescript
 - Vite
 - CSS Modules
 - [clsx](https://github.com/lukeed/clsx)
+- [Phosphor React](https://phosphoricons.com/)
+- [Tailwind](https://tailwindcss.com/)
 - [Design Tokens](https://github.com/andreortiz82/ao-design-tokens)
 - [Ant Design 5](https://ant.design/components/overview/)
 - [AO-UI-Lib](https://github.com/andreortiz82/ao-ui-lib)

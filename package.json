@@ -10,12 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.7",
     "antd": "^5.17.0",
     "ao-design-tokens": "^1.1.1",
     "ao-ui-lib": "^2.0.0",
     "clsx": "^2.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.28.0",
+    "tailwindcss": "^3.4.14"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

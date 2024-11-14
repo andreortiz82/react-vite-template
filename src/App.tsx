@@ -1,37 +1,52 @@
 import { useState } from "react";
-import clsx from "clsx";
-import style from "./App.module.css";
-import logo from "./assets/react.svg";
+import { Button, Card } from "antd";
+import { Link } from "react-router-dom";
 
-import { Button } from "antd";
+const logout = () => {
+  sessionStorage.removeItem("AO_SESSION_1");
+  window.location.reload();
+};
 
-function App() {
+export function Home() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className={clsx(style["card"])}>
-      <div className={style["logo"]}>
-        <img src={logo} alt="logo" />
-      </div>
-      <h1>React + Vite Template</h1>
-      <p>
-        This project also uses{" "}
-        <a href="https://github.com/andreortiz82/ao-design-tokens">
-          AO Design Tokens
-        </a>{" "}
-        and <a href="https://github.com/andreortiz82/ao-ui-lib">AO UI Lib</a>
-      </p>
-      <p>
-        👋 Made by hand. <a href="http://andreortiz.com">AO</a>
-      </p>
-      <div>
-        <Button
-          type="primary"
-          onClick={() => setCount((count) => count + 1)}
-        >{`count is ${count}`}</Button>
-      </div>
-    </div>
+    <section className="bg-red-500 flex justify-center items-center h-screen">
+      <Card
+        actions={[<Button onClick={logout}>Logout</Button>]}
+        className="w-1/3"
+        title="Home"
+        extra={<Link to="/about">Go to About</Link>}
+      >
+        <div>
+          <Button
+            type="primary"
+            onClick={() => setCount((count) => count + 1)}
+          >{`count is ${count}`}</Button>
+        </div>
+      </Card>
+    </section>
   );
 }
 
-export default App;
+export function About() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <section className="bg-blue-500 flex justify-center items-center h-screen">
+      <Card
+        actions={[<Button onClick={logout}>Logout</Button>]}
+        className="w-1/3"
+        title="About"
+        extra={<Link to="/">Go Home</Link>}
+      >
+        <div>
+          <Button
+            type="primary"
+            onClick={() => setCount((count) => count + 1)}
+          >{`count is ${count}`}</Button>
+        </div>
+      </Card>
+    </section>
+  );
+}
