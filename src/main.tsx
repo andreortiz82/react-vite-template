@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { Button, ConfigProvider, Flex, Input, Result, Skeleton } from "antd";
+import { ConfigProvider, Result } from "antd";
 import { createBrowserRouter, NavLink, RouterProvider } from "react-router-dom";
 import { Home, About } from "./App";
+import { Login } from "./component/Login";
 
 const SESSION_KEY = "AO_SESSION_1";
 const password = import.meta.env.VITE_PASSWORD;
 
-const FourOh4 = () => {
+const NotFound404 = () => {
   return (
     <section className="p-8 w-1/2 m-auto">
       <Result title="404" status="404">
         <div className="text-center">
-          <NavLink to="/">&larr; Go back home</NavLink>
+          <NavLink to="/">&larr; Back home</NavLink>
         </div>
       </Result>
     </section>
@@ -21,8 +22,8 @@ const FourOh4 = () => {
 
 // This determines the authentication status of the user
 const AuthenticationWrapper = (props: any) => {
-  const [inputPassword, setInputPassword] = React.useState("");
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const [inputPassword, setInputPassword] = React.useState("");
 
   useEffect(() => {
     const storedAuth = sessionStorage.getItem(SESSION_KEY);
@@ -45,34 +46,11 @@ const AuthenticationWrapper = (props: any) => {
     return <>{props.children}</>;
   } else {
     return (
-      <div className="flex h-screen grow">
-        <div className="grow bg-[url('/harold.jpeg')] bg-cover w-1/2 h-full" />
-        <div className="grow bg-slate-50 w-1/2 items-center flex justify-center">
-          <Flex
-            vertical
-            gap={16}
-            className="w-2/3 bg-white p-8 rounded-lg shadow-md"
-          >
-            <h2 className="text-xl font-bold block">Sign In</h2>
-            <Skeleton paragraph={{ rows: 2 }} />
-            <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-              <Input
-                type="password"
-                placeholder="Enter Password"
-                className="mr-2"
-                name="password"
-                size="large"
-                value={inputPassword}
-                onChange={(e) => setInputPassword(e.target.value)}
-                autoFocus
-              />
-              <Button htmlType="submit" type="primary" size="large">
-                Continue
-              </Button>
-            </form>
-          </Flex>
-        </div>
-      </div>
+      <Login
+        loginCallback={handleSubmit}
+        setInputPassword={setInputPassword}
+        inputPassword={inputPassword}
+      />
     );
   }
 };
@@ -87,7 +65,7 @@ const routes = [
         <Home />
       </AuthenticationWrapper>
     ),
-    errorElement: <FourOh4 />,
+    errorElement: <NotFound404 />,
   },
   {
     path: "/about",
@@ -96,7 +74,7 @@ const routes = [
         <About />
       </AuthenticationWrapper>
     ),
-    errorElement: <FourOh4 />,
+    errorElement: <NotFound404 />,
   },
 ];
 
