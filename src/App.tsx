@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useEffect } from "react";
 import { Button, Skeleton } from "antd";
 import { NavLink } from "react-router-dom";
+import { AppProvider, AppContext } from "./AppContext";
 
 const logout = () => {
   sessionStorage.removeItem("AO_SESSION_1");
@@ -24,7 +25,6 @@ const Header = () => {
         >
           Home Page
         </NavLink>
-
         <NavLink
           className={({ isActive }) =>
             isActive ? navStyle.active : navStyle.default
@@ -34,7 +34,7 @@ const Header = () => {
           About Page
         </NavLink>
       </nav>
-      <Button type="text" onClick={logout}>
+      <Button type="text" className="!text-white" onClick={logout}>
         Logout
       </Button>
     </header>
@@ -43,46 +43,50 @@ const Header = () => {
 
 const Layout = ({ children, color }: any) => {
   return (
-    <section
-      className={`${
-        color === "green" ? "bg-green-500" : "bg-purple-500"
-      } flex gap-8 flex-col p-10 h-screen`}
-    >
-      {children}
-    </section>
+    <AppProvider>
+      <section className={`${color} flex gap-8 flex-col p-10 h-screen`}>
+        <Header />
+        {children}
+        <Skeleton paragraph={{ rows: 10 }} />
+      </section>
+    </AppProvider>
+  );
+};
+
+const Action = ({ count, incrementCount }: any) => {
+  return (
+    <div className="flex gap-4 items-center">
+      <Button
+        size="large"
+        type="primary"
+        onClick={() => {
+          incrementCount();
+          console.log({ count });
+        }}
+      >
+        Increment Count
+      </Button>
+      <code>{JSON.stringify({ count })}</code>
+    </div>
   );
 };
 
 export function Home() {
-  const [count, setCount] = useState(0);
-
+  const { count, incrementCount } = useContext<any>(AppContext);
+  useEffect(() => {}, [count]);
   return (
-    <Layout color="green">
-      <Header />
-      <div>
-        <Button
-          type="primary"
-          onClick={() => setCount((count) => count + 1)}
-        >{`count is ${count}`}</Button>
-      </div>
-      <Skeleton paragraph={{ rows: 10 }} />
+    <Layout color="bg-purple-500">
+      <Action count={count} incrementCount={incrementCount} />
     </Layout>
   );
 }
 
 export function About() {
-  const [count, setCount] = useState(0);
-
+  const { count, incrementCount } = useContext<any>(AppContext);
+  useEffect(() => {}, [count]);
   return (
-    <Layout color="purple">
-      <Header />
-      <div>
-        <Button
-          type="primary"
-          onClick={() => setCount((count) => count + 1)}
-        >{`count is ${count}`}</Button>
-      </div>
-      <Skeleton paragraph={{ rows: 10 }} />
+    <Layout color="bg-orange-500">
+      <Action count={count} incrementCount={incrementCount} />
     </Layout>
   );
 }

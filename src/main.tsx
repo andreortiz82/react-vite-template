@@ -4,6 +4,7 @@ import { ConfigProvider, Result } from "antd";
 import { createBrowserRouter, NavLink, RouterProvider } from "react-router-dom";
 import { Home, About } from "./App";
 import { Login } from "./component/Login";
+import { AppProvider } from "./AppContext";
 
 const SESSION_KEY = "AO_SESSION_1";
 const password = import.meta.env.VITE_PASSWORD;
@@ -43,7 +44,7 @@ const AuthenticationWrapper = (props: any) => {
   };
 
   if (isAuthenticated) {
-    return <>{props.children}</>;
+    return <AppProvider>{props.children}</AppProvider>;
   } else {
     return (
       <Login
@@ -78,9 +79,15 @@ const routes = [
   },
 ];
 
+const customTheme = {
+  token: {
+    colorPrimary: "black",
+  },
+};
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ConfigProvider>
+    <ConfigProvider theme={customTheme}>
       {routes.length >= 1 ? (
         <RouterProvider router={createBrowserRouter(routes)} />
       ) : (

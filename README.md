@@ -16,6 +16,8 @@ Includes:
 - [Ant Design 5](https://ant.design/components/overview/)
 - [AO-UI-Lib](https://github.com/andreortiz82/ao-ui-lib)
 
+Uses `useContext` hook for state mgmt.
+
 ## Get Started
 
 ```
