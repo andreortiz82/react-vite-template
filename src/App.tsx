@@ -16,10 +16,10 @@ const Header = () => {
 
   return (
     <header className="flex justify-between">
-      <nav className="text-5xl text-white font-bold flex gap-8">
+      <nav className="text-5xl text-black font-bold flex gap-8">
         <NavLink
           className={({ isActive }) =>
-            isActive ? navStyle.active : navStyle.default
+            isActive ? "opacity-100" : "opacity-50"
           }
           to="/"
         >
@@ -27,7 +27,7 @@ const Header = () => {
         </NavLink>
         <NavLink
           className={({ isActive }) =>
-            isActive ? navStyle.active : navStyle.default
+            isActive ? "opacity-100" : "opacity-50"
           }
           to="/about"
         >
@@ -75,7 +75,7 @@ export function Home() {
   const { count, incrementCount } = useContext<any>(AppContext);
   useEffect(() => {}, [count]);
   return (
-    <Layout color="bg-purple-500">
+    <Layout color="bg-red-400">
       <Action count={count} incrementCount={incrementCount} />
     </Layout>
   );
@@ -85,7 +85,7 @@ export function About() {
   const { count, incrementCount } = useContext<any>(AppContext);
   useEffect(() => {}, [count]);
   return (
-    <Layout color="bg-orange-500">
+    <Layout color="bg-blue-400">
       <Action count={count} incrementCount={incrementCount} />
     </Layout>
   );

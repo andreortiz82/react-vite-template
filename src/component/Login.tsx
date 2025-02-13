@@ -13,7 +13,7 @@ export const Login = ({
         <Flex
           vertical
           gap={16}
-          className="w-2/3 bg-white p-8 rounded-lg shadow-md"
+          className="w-2/3 bg-white !p-8 rounded-lg shadow-md"
         >
           <h2 className="text-xl font-bold block">Sign In</h2>
           <Skeleton paragraph={{ rows: 2 }} />
