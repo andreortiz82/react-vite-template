@@ -27,4 +27,8 @@ npm i
 npm run dev
 ```
 
+### Password
+
+Rename the `.env.sample` to `.env` and set a new password. Default password is `password`
+
 The project runs on [localhost:3000](http://localhost:3000/)

@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Button, Skeleton } from "antd";
+import { Button, Card, Divider, Skeleton } from "antd";
 import { NavLink } from "react-router-dom";
 import { AppProvider, AppContext } from "./AppContext";
 
@@ -46,8 +46,11 @@ const Layout = ({ children, color }: any) => {
     <AppProvider>
       <section className={`${color} flex gap-8 flex-col p-10 h-screen`}>
         <Header />
-        {children}
-        <Skeleton paragraph={{ rows: 10 }} />
+        <Card>
+          {children}
+          <Divider />
+          <Skeleton paragraph={{ rows: 10 }} />
+        </Card>
       </section>
     </AppProvider>
   );
