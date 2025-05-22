@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
-import { Button, Card, Divider, Skeleton } from "antd";
 import { NavLink } from "react-router-dom";
 import { AppProvider, AppContext } from "./AppContext";
+import { Button } from "@/components/ui/button";
 
 const logout = () => {
   sessionStorage.removeItem("AO_SESSION_1");
@@ -34,9 +34,7 @@ const Header = () => {
           About Page
         </NavLink>
       </nav>
-      <Button type="text" className="!text-white" onClick={logout}>
-        Logout
-      </Button>
+      <Button onClick={logout}>Logout</Button>
     </header>
   );
 };
@@ -46,11 +44,7 @@ const Layout = ({ children, color }: any) => {
     <AppProvider>
       <section className={`${color} flex gap-8 flex-col p-10 h-screen`}>
         <Header />
-        <Card>
-          {children}
-          <Divider />
-          <Skeleton paragraph={{ rows: 10 }} />
-        </Card>
+        {children}
       </section>
     </AppProvider>
   );
@@ -60,8 +54,6 @@ const Action = ({ count, incrementCount }: any) => {
   return (
     <div className="flex gap-4 items-center">
       <Button
-        size="large"
-        type="primary"
         onClick={() => {
           incrementCount();
           console.log({ count });

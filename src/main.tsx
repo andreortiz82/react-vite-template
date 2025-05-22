@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { ConfigProvider, Result } from "antd";
 import { createBrowserRouter, NavLink, RouterProvider } from "react-router-dom";
 import { Home, About } from "./App";
-import { Login } from "./component/Login";
+import { Login } from "./views/Login";
 import { AppProvider } from "./AppContext";
 
 const SESSION_KEY = "AO_SESSION_1";
@@ -12,11 +11,9 @@ const password = import.meta.env.VITE_PASSWORD;
 const NotFound404 = () => {
   return (
     <section className="p-8 w-1/2 m-auto">
-      <Result title="404" status="404">
-        <div className="text-center">
-          <NavLink to="/">&larr; Back home</NavLink>
-        </div>
-      </Result>
+      <div className="text-center">
+        <NavLink to="/">&larr; Back home</NavLink>
+      </div>
     </section>
   );
 };
@@ -87,18 +84,16 @@ const customTheme = {
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ConfigProvider theme={customTheme}>
-      {routes.length >= 1 ? (
-        <RouterProvider router={createBrowserRouter(routes)} />
-      ) : (
-        <section className="p-8">
-          <h1 className="text-3xl font-bold block mb-4 text-red-600">
-            Error: You need at least 1 route defined.
-          </h1>
-          The <kbd>routes</kbd> array should have at least 1 route defined. See{" "}
-          <kbd>src/main.tsx</kbd>
-        </section>
-      )}
-    </ConfigProvider>
+    {routes.length >= 1 ? (
+      <RouterProvider router={createBrowserRouter(routes)} />
+    ) : (
+      <section className="p-8">
+        <h1 className="text-3xl font-bold block mb-4 text-red-600">
+          Error: You need at least 1 route defined.
+        </h1>
+        The <kbd>routes</kbd> array should have at least 1 route defined. See{" "}
+        <kbd>src/main.tsx</kbd>
+      </section>
+    )}
   </React.StrictMode>
 );
