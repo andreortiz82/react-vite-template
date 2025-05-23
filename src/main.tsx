@@ -21,7 +21,6 @@ const NotFound404 = () => {
 // This determines the authentication status of the user
 const AuthenticationWrapper = (props: any) => {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
-  const [inputPassword, setInputPassword] = React.useState("");
 
   useEffect(() => {
     const storedAuth = sessionStorage.getItem(SESSION_KEY);
@@ -30,10 +29,13 @@ const AuthenticationWrapper = (props: any) => {
     }
   }, []);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (inputPassword === password) {
-      sessionStorage.setItem(SESSION_KEY, inputPassword);
+    const formData = new FormData(e.currentTarget);
+    const submittedPassword = formData.get("password") as string;
+
+    if (submittedPassword === password) {
+      sessionStorage.setItem(SESSION_KEY, submittedPassword);
       setIsAuthenticated(true);
     } else {
       alert("Incorrect password, please try again.");
@@ -43,13 +45,7 @@ const AuthenticationWrapper = (props: any) => {
   if (isAuthenticated) {
     return <AppProvider>{props.children}</AppProvider>;
   } else {
-    return (
-      <Login
-        loginCallback={handleSubmit}
-        setInputPassword={setInputPassword}
-        inputPassword={inputPassword}
-      />
-    );
+    return <Login loginCallback={handleSubmit} />;
   }
 };
 
