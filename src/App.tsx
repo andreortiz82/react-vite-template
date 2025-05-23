@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { AppProvider, AppContext } from "./AppContext";
 import { Button } from "@/components/ui/button";
-import Dashboard from "./views/Dashboard";
+import { UIMock } from "./views/Dashboard";
 
 const logout = () => {
   sessionStorage.removeItem("AO_SESSION_1");
@@ -61,7 +61,7 @@ export function Home() {
   return (
     <Layout>
       {/* <Action count={count} incrementCount={incrementCount} /> */}
-      <Dashboard />
+      <UIMock title="Home Page" />
     </Layout>
   );
 }
@@ -72,7 +72,7 @@ export function About() {
   return (
     <Layout>
       {/* <Action count={count} incrementCount={incrementCount} /> */}
-      <Dashboard />
+      <UIMock title="About Page" />
     </Layout>
   );
 }
