@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { AppProvider, AppContext } from "./AppContext";
 import { Button } from "@/components/ui/button";
+import Dashboard from "./views/Dashboard";
 
 const logout = () => {
   sessionStorage.removeItem("AO_SESSION_1");
@@ -9,11 +10,6 @@ const logout = () => {
 };
 
 const Header = () => {
-  const navStyle = {
-    default: "opacity-50 cursor-pointer py-2",
-    active: "opacity-1 cursor-default py-2 border-b-4 border-white",
-  };
-
   return (
     <header className="flex justify-between">
       <nav className="text-5xl text-black font-bold flex gap-8">
@@ -39,20 +35,13 @@ const Header = () => {
   );
 };
 
-const Layout = ({ children, color }: any) => {
-  return (
-    <AppProvider>
-      <section className={`${color} flex gap-8 flex-col p-10 h-screen`}>
-        <Header />
-        {children}
-      </section>
-    </AppProvider>
-  );
+const Layout = ({ children }: any) => {
+  return <AppProvider>{children}</AppProvider>;
 };
 
 const Action = ({ count, incrementCount }: any) => {
   return (
-    <div className="flex gap-4 items-center">
+    <div>
       <Button
         onClick={() => {
           incrementCount();
@@ -70,8 +59,9 @@ export function Home() {
   const { count, incrementCount } = useContext<any>(AppContext);
   useEffect(() => {}, [count]);
   return (
-    <Layout color="bg-red-400">
-      <Action count={count} incrementCount={incrementCount} />
+    <Layout>
+      {/* <Action count={count} incrementCount={incrementCount} /> */}
+      <Dashboard />
     </Layout>
   );
 }
@@ -80,8 +70,9 @@ export function About() {
   const { count, incrementCount } = useContext<any>(AppContext);
   useEffect(() => {}, [count]);
   return (
-    <Layout color="bg-blue-400">
-      <Action count={count} incrementCount={incrementCount} />
+    <Layout>
+      {/* <Action count={count} incrementCount={incrementCount} /> */}
+      <Dashboard />
     </Layout>
   );
 }
